@@ -42,13 +42,13 @@ static int write_title_el(FILE* out, int state) {
     return write_metadata_el(out, state);
   }
   
-  fprintf(out, "<div><h5>");
+  fprintf(out, "<li><h5>");
   return TITLE;
 }
 
 static int write_text_el(FILE* out, int state) {
   if (state & TEXT) {
-    fprintf(out, "</p>");
+    fprintf(out, "</p></li>");
     return write_title_el(out, state);
   }
 
@@ -144,10 +144,12 @@ int main(int argc, char** argv) {
   fprintf(stdout,
     "body{margin:60 auto;max-width:750px;line-height:1.6;"
     "font-family:sans-serif;padding:0 10px}"
+    "ul{list-style:none;display:flex;flex-direction:column-reverse}"
+    "li{flex:0 0 auto}"
     "h5{margin:0}"
     "p{margin-bottom:32px}"
   );
-  fprintf(stdout, "</style></head><body>");
+  fprintf(stdout, "</style></head><body><ul>");
 
   char line[4096];
   // file begins with the title of first book
@@ -156,6 +158,6 @@ int main(int argc, char** argv) {
     state = process_line(stdout, line, state);
   }
   
-  fprintf(stdout, "</body></html>");
+  fprintf(stdout, "</ul></body></html>");
   return 0;
 }

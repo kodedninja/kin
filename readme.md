@@ -9,7 +9,7 @@ $ kin "My Highlights.txt" > highlights.html
 ## About
 kin turns the Kindle highlight file into a single-file html document so you can use your browser to read it (and search it). 
 
-I didn't like that there was no small and simple (therefore C) implementation of Kindle export scripts. To make the code as simple as possible, it outputs the highlights in chronological order (newest on the bottom).
+I didn't like that there was no small and simple (therefore C) implementation of Kindle export scripts. To keep the code simple, the highlights are reversed with `flex-direction: column-reverse` (I'm curious if someone has a better idea here) so if your browser doesn't support `flex`, you'll see them in chronological order.
 
 Inspired by [doq](https://github.com/rxi/doq) and also used the basic implementation from there.
 
